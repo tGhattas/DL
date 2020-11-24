@@ -37,8 +37,8 @@ def encode_pep(peptide):
 
 def prepare_data(test_percent=0.2):
     pos, neg = get_data()
-    labeled_pos_onehot_vecs = [[encode_pep(pep), 1] for pep in pos]
-    labeled_neg_onehot_vecs = [[encode_pep(pep), 0] for pep in neg]
+    labeled_pos_onehot_vecs = [[encode_pep(pep), 1] for pep in pos if len(pep) > 0]
+    labeled_neg_onehot_vecs = [[encode_pep(pep), 0] for pep in neg if len(pep) > 0]
     labeled_onehots = np.array(labeled_pos_onehot_vecs+labeled_neg_onehot_vecs)
     np.random.shuffle(labeled_onehots)
     partition_index = int((1-test_percent)*len(labeled_onehots))
@@ -54,12 +54,12 @@ def prepare_data(test_percent=0.2):
     for item in test_data:
         x_test.append(item[0])
         y_test.append(item[1])
-    x_train = np.array(x_train)
-    x_test = np.array(x_test)
-    y_train = np.array(y_train)
-    y_test = np.array(y_test)
     return (x_train, y_train), (x_test, y_test)
 
 
-# if __name__ == '__main__':
-#     pos, neg = get_data()
+if __name__ == '__main__':
+
+    (x_train, y_train), (x_test, y_test) = prepare_data()
+
+    train_ds = tf.data.Dataset.from_tensor_slices(
+        (x_train, y_train)).shuffle(10000).batch(32)
