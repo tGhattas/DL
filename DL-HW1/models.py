@@ -11,6 +11,7 @@ class MyModel(Model):
     self.d1 = Dense(128, activation='relu')
     self.d2 = Dense(10)
 
+
   def call(self, x):
     x = self.conv1(x)
     x = self.flatten(x)
