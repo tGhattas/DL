@@ -1,0 +1,2 @@
+INPUT_DIM = 9*26
+OUTPUT_DIM = 2

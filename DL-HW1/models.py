@@ -1,19 +1,20 @@
-from tensorflow.keras.layers import Dense, Flatten, Conv2D
+from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras import Model
+import hyper_params
 
 
-class MyModel(Model):
+class MLP(Model):
 
-  def __init__(self):
+  def __init__(self, input_shape=hyper_params.INPUT_DIM, output_shape=hyper_params.OUTPUT_DIM):
     super(MyModel, self).__init__()
-    self.conv1 = Conv2D(32, 3, activation='relu')
-    self.flatten = Flatten()
-    self.d1 = Dense(128, activation='relu')
-    self.d2 = Dense(10)
 
+    # self.flatten = Flatten()
+    self.d1 = Dense(350, input_shape=input_shape, activation='relu')
+    self.d2 = Dense(50, activation='relu')
+    self.d3 = Dense(output_shape, activation='softmax')
 
   def call(self, x):
-    x = self.conv1(x)
-    x = self.flatten(x)
     x = self.d1(x)
-    return self.d2(x)
+    x = self.d2(x)
+    x = self.d3(x)
+    return x
