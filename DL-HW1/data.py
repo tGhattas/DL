@@ -28,17 +28,20 @@ def onehot_vec(char):
     return vec
 
 
-def encode_pep(peptide):
+def encode_pep(peptide, one_d):
     encoded = []
     for c in peptide:
-        encoded.append(onehot_vec(c))
+        if one_d:
+            encoded.extend(onehot_vec(c))
+        else:
+            encoded.append(onehot_vec(c))
     return np.array(encoded)
 
 
-def prepare_data(test_percent=0.2):
+def prepare_data(test_percent=0.2, one_d=True):
     pos, neg = get_data()
-    labeled_pos_onehot_vecs = [[encode_pep(pep), 1] for pep in pos if len(pep) > 0]
-    labeled_neg_onehot_vecs = [[encode_pep(pep), 0] for pep in neg if len(pep) > 0]
+    labeled_pos_onehot_vecs = [[encode_pep(pep, one_d), 1] for pep in pos if len(pep) > 0]
+    labeled_neg_onehot_vecs = [[encode_pep(pep, one_d), 0] for pep in neg if len(pep) > 0]
     labeled_onehots = np.array(labeled_pos_onehot_vecs+labeled_neg_onehot_vecs)
     np.random.shuffle(labeled_onehots)
     partition_index = int((1-test_percent)*len(labeled_onehots))
@@ -55,6 +58,7 @@ def prepare_data(test_percent=0.2):
         x_test.append(item[0])
         y_test.append(item[1])
     return (x_train, y_train), (x_test, y_test)
+
 
 
 if __name__ == '__main__':
