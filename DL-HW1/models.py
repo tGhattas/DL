@@ -6,7 +6,7 @@ import hyper_params
 class MLP(Model):
 
   def __init__(self, input_shape=hyper_params.INPUT_DIM, output_shape=hyper_params.OUTPUT_DIM):
-    super(MyModel, self).__init__()
+    super(MLP, self).__init__()
 
     # self.flatten = Flatten()
     self.d1 = Dense(350, input_shape=input_shape, activation='relu')
