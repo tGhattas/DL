@@ -1,5 +1,5 @@
 from tensorflow.keras.layers import Dense, Flatten
-from tensorflow.keras import Model
+from tensorflow.keras import Model, Sequential
 import hyper_params
 
 
@@ -18,3 +18,11 @@ class MLP(Model):
     x = self.d2(x)
     x = self.d3(x)
     return x
+
+
+MLP_s = Sequential(name='MLP', layers=[
+  Flatten(),
+  Dense(350, activation='relu'),
+  Dense(50, activation='relu'),
+  Dense(1, 'sigmoid'),
+])

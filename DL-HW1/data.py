@@ -38,7 +38,7 @@ def encode_pep(peptide, one_d):
     return np.array(encoded)
 
 
-def prepare_data(test_percent=0.2, one_d=True):
+def prepare_data(test_percent=0.1, one_d=False):
     pos, neg = get_data()
     labeled_pos_onehot_vecs = [[encode_pep(pep, one_d), 1] for pep in pos if len(pep) > 0]
     labeled_neg_onehot_vecs = [[encode_pep(pep, one_d), 0] for pep in neg if len(pep) > 0]
