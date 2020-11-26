@@ -1,0 +1,87 @@
+
+%This is my super simple Real Analysis Homework template
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[]{amsthm} %lets us use \begin{proof}
+\usepackage[]{amssymb} %gives us the character \varnothing
+
+\title{Homework 1}
+\author{Tamer Ghattas and Daniel Kuger}
+\date\today
+%This information doesn't actually show up on your document unless you use the maketitle command below
+
+\begin{document}
+\maketitle %This command prints the title based on information entered above
+
+%Section and subsection automatically number unless you put the asterisk next to them.
+\section*{Section 2}
+
+\subsection*{Problem 1}
+
+\begin{proof}
+Given functions $f, g:\mathcal{F}^m\rightarrow\mathcal{F}^n$ are linear, and $a,\ b\ \mathcal{\in F}^m$ and $c$ scalar.
+\begin{itemize}
+\item$
+f(g(a+b))=_{g\ linear}f(g(a)+g(b))=_{f\ linear}f(g(a))+f(g(b))
+$
+\item$
+f(g(c\cdot a))=_{g\ linear}f(c\cdot g(a))=_{f\ linear}c\cdot f(g(a))
+$
+\end{itemize}
+
+Therefore the composition of linear functions are linear.
+\end{proof}
+
+\begin{proof}
+Given functions $f, g:\mathcal{F}^m\rightarrow\mathcal{F}^n$ are affine and $M_{1},\ M_{2}\ \mathcal{\in F}^{m x n}$ and $b_{1}$, $b_{2}\ \mathcal{\in F}^m$ \. s.t for $x \mathcal{\in F}^{n}$ \\
+\[
+f(x) = M_{1}x +b_{1} \ \text{and}\ g(x) = M_{2}x + b_{2}
+\]
+then\\
+\[ 
+f(g(x))=M_{1}g(x)+b_{1}=M_{1}(M_{2}x+b_{2})+b_{2}=
+\]
+\[ 
+{M_{1}M_{2}}x+(M_{1}b_{2}+b_{2})
+\]
+which can be written as
+\[
+M_{3}x +b_{3} 
+\]
+Therefore the composition of affine functions are affine.
+\end{proof}
+
+
+\clearpage %Gives us a page break before the next section. Optional.
+
+\subsection*{Problem 2}
+
+\begin{enumerate}
+    \item The given iterative scheme stops when $f\left(x^{n+1}\right)=f\left(x^{n}\right)$ that is on $-\alpha \nabla f\left(x^{n}\right)=0$ and that occurs for $\alpha \neq 0$ only when $$\left(\frac{\partial f}{\partial x_{1}}, \ldots, \frac{\partial f}{\partial x_{n}}\right)=0$$ which means that the iterative scheme stops on a local minimum or maximum.
+    
+    \item let $x\in \mathcal{R}^{n}$ w.l.o.g be a local minimum, then
+    $$(*)\ f(x+dx)-f(x)>0$$
+    and
+    $$\nabla f(x) = 0$$
+    Using the second-order multivariate Taylor theorem, we know that
+    $$f(x+d x)=f(x)+\nabla f(x) \cdot d x+d x^{T} \cdot H(x) \cdot d x+O\left(\|d x\|^{3}\right)$$
+     Corollary, we have:
+    $$f(x+d x)=f(x)+0 \cdot d x+d x^{T} \cdot H(x) \cdot d x+O\left(\|d x\|^{3}\right)=$$
+    $$f(x+d x)-f(x)=d x^{T} \cdot H(x) \cdot d x+O\left(\|d x\|^{3}\right)=$$
+    by (*) we get then:
+    $$0<d x^{T} \cdot H(x) \cdot d x+O\left(\|d x\|^{3}\right)$$
+    We conclude that if x is a local minimum then the Hessian matrix is positive definite.
+    Note that for local maximum the transitions are symmetric and leads to the Hessian being negative definite.
+\end{enumerate}
+
+
+
+\subsection*{Problem 3}
+blaah
+\subsection*{Problem 4}
+Blah
+\subsection*{Problem 5}
+blah
+\end{document}
